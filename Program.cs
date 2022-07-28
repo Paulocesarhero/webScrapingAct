@@ -1,16 +1,23 @@
 ﻿using System.Text.Json;
+using Newtonsoft.Json;
 using PuppeteerSharp;
 using PuppeteerSharp.Input;
+using WebScrapingEminus4.clases;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 var url = "https://eminus.uv.mx/eminus4/";
 var chrome = @"c:\Program Files\Google\Chrome\Application\chrome.exe";
-var password = "HTML5semantics";
-var username = "zS20020854";
 var delay = 100;
 var usernameSelector = "#mat-input-0";
 var passwordSelector = "#mat-input-1";
 
+StreamReader r = new StreamReader(@".\user.json");
+string json = r.ReadToEnd();
+User usuaro = JsonConvert.DeserializeObject<User>(json);
+
+var password = usuaro.Password;
+var username = usuaro.Username;
+Console.WriteLine(password + username);
 using var browserFetcher = new BrowserFetcher();
 await browserFetcher.DownloadAsync();
 await using var browser = await Puppeteer.LaunchAsync(

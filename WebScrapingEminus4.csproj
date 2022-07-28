@@ -11,4 +11,10 @@
       <PackageReference Include="PuppeteerSharp" Version="7.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="user.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
